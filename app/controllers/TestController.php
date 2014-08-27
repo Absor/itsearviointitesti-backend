@@ -28,7 +28,7 @@ class TestController extends BaseController {
         $test = new Test;
         $test->fill(Input::all());
         $test->save();
-        return Response::json($test, 200, [], JSON_NUMERIC_CHECK);
+        return Response::json($test, 201, [], JSON_NUMERIC_CHECK);
 	}
 
 
@@ -40,7 +40,11 @@ class TestController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return Response::json(Test::with('interpretations', 'interpretations.claims')->find($id), 200, [], JSON_NUMERIC_CHECK);
+        $test = Test::with('interpretations', 'interpretations.claims')->find($id);
+        if (!$test) {
+            return Response::json($test, 404, [], JSON_NUMERIC_CHECK);
+        }
+        return Response::json($test, 200, [], JSON_NUMERIC_CHECK);
 	}
 
 
@@ -52,7 +56,13 @@ class TestController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        $test = Test::find($id);
+        if (!$test) {
+            return Response::json($test, 404, [], JSON_NUMERIC_CHECK);
+        }
+        $test->fill(Input::all());
+        $test->save();
+        return Response::json($test, 200, [], JSON_NUMERIC_CHECK);
 	}
 
 
@@ -64,7 +74,12 @@ class TestController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        $test = Test::find($id);
+        if (!$test) {
+            return Response::json($test, 404, [], JSON_NUMERIC_CHECK);
+        }
+        $test->delete();
+        return Response::json($test, 200, [], JSON_NUMERIC_CHECK);
 	}
 
 
