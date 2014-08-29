@@ -43,8 +43,6 @@ class ClaimTableSeeder extends Seeder {
             "text" => "Täydellisyyteen pyrkiminen vaikeuttaa kirjoittamista, joten yleensä en kirjoita tosissani.",
             "claimgroupId" => 11
         ));
-
-        Eloquent::guard();
     }
 
 }

@@ -12,7 +12,5 @@ class UserTableSeeder extends Seeder {
             'email' => 'test@test.com',
             'password' => Hash::make('test')
         ));
-
-        Eloquent::guard();
     }
 }

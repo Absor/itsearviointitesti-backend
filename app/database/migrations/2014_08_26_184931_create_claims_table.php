@@ -16,7 +16,7 @@ class CreateClaimsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->timestamps();
-            $table->integer('interpretation_id');
+            $table->integer('interpretation_id')->unsigned();
             $table->string('text');
             $table->integer('claimgroupId');
 		});

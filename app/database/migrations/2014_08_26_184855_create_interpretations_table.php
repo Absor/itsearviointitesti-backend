@@ -16,7 +16,7 @@ class CreateInterpretationsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->timestamps();
-            $table->integer('test_id');
+            $table->integer('test_id')->unsigned();
             $table->string('category');
             $table->string('type');
             $table->string('text');
