@@ -4,6 +4,8 @@ class ClaimTableSeeder extends Seeder {
 
     public function run()
     {
+        Eloquent::unguard();
+
         DB::table('claims')->delete();
 
         Claim::create(array(
@@ -41,6 +43,8 @@ class ClaimTableSeeder extends Seeder {
             "text" => "Täydellisyyteen pyrkiminen vaikeuttaa kirjoittamista, joten yleensä en kirjoita tosissani.",
             "claimgroupId" => 11
         ));
+
+        Eloquent::guard();
     }
 
 }

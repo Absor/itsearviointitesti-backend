@@ -4,6 +4,8 @@ class TestTableSeeder extends Seeder {
 
     public function run()
     {
+        Eloquent::unguard();
+
         DB::table('tests')->delete();
 
         Test::create(array(
@@ -15,6 +17,8 @@ class TestTableSeeder extends Seeder {
             "testPagesText" => "Valitse 0–3 väitettä.",
             "interpretationPageText" => "#Itsearviointitestin tulokset\n\nTällä sivulla näkyy, mitä kirjoittamisen osa-alueita painotat valinnoissasi. Tulokset näyttävät ensin vahvuutesi kirjoittajana ja sen jälkeen näet alueet, joissa tarvitset harjoitusta. Lue tuloksesi ja niistä annetut tulkinnat huolellisesti ja hyödynnä niitä tarpeen mukaan.",
         ));
+
+        Eloquent::guard();
     }
 
 }

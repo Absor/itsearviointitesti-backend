@@ -47,3 +47,6 @@ $app = require_once __DIR__.'/../bootstrap/start.php';
 */
 
 $app->run();
+
+//Artisan::call('migrate', array('--force' => true));
+//Artisan::call('db:seed', array('--class' => 'UserTableSeeder', '--force' => true));
