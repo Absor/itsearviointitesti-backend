@@ -4,7 +4,7 @@ class UserController extends BaseController {
 
     public function __construct()
     {
-        $this->beforeFilter('auth.token');
+        $this->beforeFilter('auth.token', array('except' => array('postReset', 'postRemind')));
     }
 
     /**
@@ -30,15 +30,12 @@ class UserController extends BaseController {
         $user->password = Hash::make(sha1(time()));
         $user->save();
 
-        switch ($response = Password::remind(array('email' => $user->email)))
+        Password::remind(Input::only('email'), function($message)
         {
-            case Password::INVALID_USER:
-                return Response::json($user, 404, [], JSON_NUMERIC_CHECK);
+            $message->subject(Config::get('app.frontend_url') . ' uusi salasana');
+        });
 
-
-            case Password::REMINDER_SENT:
-                return Response::json($user, 201, [], JSON_NUMERIC_CHECK);
-        }
+        return Response::json($user, 201, [], JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -83,14 +80,12 @@ class UserController extends BaseController {
      */
     public function postRemind()
     {
-        switch ($response = Password::remind(Input::only('email')))
+        $response = Password::remind(Input::only('email'), function($message)
         {
-            case Password::INVALID_USER:
-                return Redirect::back()->with('error', Lang::get($response));
+            $message->subject(Config::get('app.frontend_url') . ' uusi salasana');
+        });
 
-            case Password::REMINDER_SENT:
-                return Redirect::back()->with('status', Lang::get($response));
-        }
+        return Response::json(null, 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -116,10 +111,10 @@ class UserController extends BaseController {
             case Password::INVALID_PASSWORD:
             case Password::INVALID_TOKEN:
             case Password::INVALID_USER:
-                return Redirect::back()->with('error', Lang::get($response));
+                return Response::json(null, 400, [], JSON_NUMERIC_CHECK);
 
             case Password::PASSWORD_RESET:
-                return Redirect::to('/');
+                return Response::json(null, 200, [], JSON_NUMERIC_CHECK);
         }
     }
 }

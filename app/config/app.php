@@ -28,6 +28,12 @@ return array(
 
 	'url' => 'http://localhost',
 
+
+    /*
+     * The url of the frontend application.
+     */
+    'frontend_url' => 'http://plotti.fi/testit',
+
 	/*
 	|--------------------------------------------------------------------------
 	| Application Timezone

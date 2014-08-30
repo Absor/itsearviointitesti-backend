@@ -22,4 +22,9 @@ Route::group(array('prefix' => 'api'), function()
     Route::resource('tests.interpretations.claims', 'ClaimController', array('except' => array('create', 'edit')));
 
     Route::resource('users', 'UserController', array('except' => array('create', 'edit', 'update')));
+
+    Route::group(array('prefix' => 'password'), function() {
+        Route::post('remind', 'UserController@postRemind');
+        Route::post('reset', 'UserController@postReset');
+    });
 });
