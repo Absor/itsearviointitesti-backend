@@ -11,15 +11,15 @@
 |
 */
 
-
-
-Route::get('auth', 'Tappleby\AuthToken\AuthTokenController@index');
-Route::post('auth', 'Tappleby\AuthToken\AuthTokenController@store');
-Route::delete('auth', 'Tappleby\AuthToken\AuthTokenController@destroy');
-
 Route::group(array('prefix' => 'api'), function()
 {
+    Route::get('auth', 'Tappleby\AuthToken\AuthTokenController@index');
+    Route::post('auth', 'Tappleby\AuthToken\AuthTokenController@store');
+    Route::delete('auth', 'Tappleby\AuthToken\AuthTokenController@destroy');
+
     Route::resource('tests', 'TestController', array('except' => array('create', 'edit')));
     Route::resource('tests.interpretations', 'InterpretationController', array('except' => array('create', 'edit')));
     Route::resource('tests.interpretations.claims', 'ClaimController', array('except' => array('create', 'edit')));
+
+    Route::resource('users', 'UserController', array('except' => array('create', 'edit', 'update')));
 });
