@@ -19,7 +19,7 @@ class CreateInterpretationsTable extends Migration {
             $table->integer('test_id')->unsigned();
             $table->string('category');
             $table->string('type');
-            $table->string('text');
+            $table->text('text');
             $table->string('color');
 		});
 	}

@@ -13,6 +13,10 @@ class Test extends Eloquent {
         return $this->hasManyThrough('Claim', 'Interpretation');
     }
 
+    public function completeds()
+    {
+        return $this->hasMany('Completed');
+    }
 
     public function delete()
     {
@@ -22,6 +26,7 @@ class Test extends Eloquent {
         }
 
         $this->interpretations()->delete();
+        $this->completeds()->delete();
 
         return parent::delete();
     }

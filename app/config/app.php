@@ -32,7 +32,7 @@ return array(
     /*
      * The url of the frontend application.
      */
-    'frontend_url' => 'http://plotti.fi/testit',
+    'frontend_url' => 'http://frontend',
 
 	/*
 	|--------------------------------------------------------------------------

@@ -23,4 +23,4 @@
 7. Kommentoi kohdan 5. rivi uudestaan.
 8. Tee sama (5.-7.) myös riville "//Artisan::call('db:seed', array('--class' => 'UserTableSeeder', '--force' => true));". Tämä luo käyttäjän tietokantaan tunnuksella test@test.com ja salasanalla test.
 9. Muokkaa sähköpostiasetukset kuntoon tiedostosta app/config/mail.php.
-10. Muuta app/config/app.php-tiedostosta rivi "'frontend_url' => 'http://plotti.fi/testit'," kohta http://plotti.fi/testit vastaamaan testin sijaintia (selainpuoli).
+10. Muuta app/config/app.php-tiedostosta rivi "'frontend_url' => 'http://frontend'," kohta http://frontend vastaamaan testin sijaintia (selainpuoli).

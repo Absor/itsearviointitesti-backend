@@ -19,6 +19,7 @@ Route::group(array('prefix' => 'api'), function()
 
     Route::resource('tests', 'TestController', array('except' => array('create', 'edit')));
     Route::resource('tests.interpretations', 'InterpretationController', array('except' => array('create', 'edit')));
+    Route::resource('tests.completeds', 'CompletedController', array('except' => array('create', 'edit', 'show', 'update', 'destroy')));
     Route::resource('tests.interpretations.claims', 'ClaimController', array('except' => array('create', 'edit')));
 
     Route::resource('users', 'UserController', array('except' => array('create', 'edit', 'update')));
